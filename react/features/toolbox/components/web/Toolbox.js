@@ -81,6 +81,8 @@ import OverflowMenuProfileItem from './OverflowMenuProfileItem';
 import ToolbarButton from './ToolbarButton';
 import VideoSettingsButton from './VideoSettingsButton';
 
+import { DetectTextButton } from '../../../text-detection'
+
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
  */
@@ -1264,6 +1266,9 @@ class Toolbox extends Component<Props, State> {
                     <HangupButton
                         visible = { this._shouldShowButton('hangup') } />
                     { this._renderVideoButton() }
+                </div>
+                <div>
+                    <DetectTextButton />
                 </div>
                 <div className = 'button-group-right'>
                     { buttonsRight.indexOf('localrecording') !== -1
