@@ -158,6 +158,7 @@ class WelcomePage extends AbstractWelcomePage {
      * @returns {ReactElement|null}
      */
     render() {
+
         const { t } = this.props;
         const { APP_NAME } = interfaceConfig;
         const showAdditionalContent = this._shouldShowAdditionalContent();

@@ -31,6 +31,7 @@ import {
     getName
 } from './functions';
 import logger from './logger';
+import { cognitoCodeLoginCallback, cognitoSignOutCallback, cognitoCheckLogin } from '../oauth2';
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -48,7 +49,8 @@ declare var interfaceConfig: Object;
 export function appNavigate(uri: ?string) {
     return async (dispatch: Dispatch<any>, getState: Function) => {
         let location = parseURIString(uri);
-
+        console.log("location: ");
+        console.log(location);
         // If the specified location (URI) does not identify a host, use the app's
         // default.
         if (!location || !location.host) {
@@ -72,6 +74,24 @@ export function appNavigate(uri: ?string) {
         location.protocol || (location.protocol = 'https:');
         const { contextRoot, host, room } = location;
         const locationURL = new URL(location.toString());
+
+        console.log("contextRoot, host, room");
+        console.log(contextRoot, host, room);
+
+        console.log("location.pathname");
+        console.log(location.pathname);
+
+        if(location.pathname === "/oauth2/callback") {
+            cognitoCodeLoginCallback(uri);
+            return;
+        }
+
+        if(location.pathname === "/oauth2/signout") {
+            cognitoSignOutCallback(uri);
+            return;
+        }
+
+        cognitoCheckLogin()
 
         // Disconnect from any current conference.
         // FIXME: unify with web.

@@ -84,6 +84,10 @@ deploy-local:
 dev: deploy-init deploy-css deploy-rnnoise-binary deploy-lib-jitsi-meet deploy-libflac
 	$(WEBPACK_DEV_SERVER) --detect-circular-deps
 
+.NOTPARALLEL:
+dev2: deploy-init deploy-css deploy-rnnoise-binary deploy-lib-jitsi-meet deploy-libflac
+	$(WEBPACK_DEV_SERVER) --host 0.0.0.0
+
 source-package:
 	mkdir -p source_package/jitsi-meet/css && \
 	cp -r *.js *.html resources/*.txt connection_optimization favicon.ico fonts images libs static sounds LICENSE lang source_package/jitsi-meet && \
