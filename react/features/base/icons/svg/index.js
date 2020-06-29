@@ -85,6 +85,7 @@ export { default as IconShare } from './share.svg';
 export { default as IconShareDesktop } from './share-desktop.svg';
 export { default as IconShareDoc } from './share-doc.svg';
 export { default as IconShareVideo } from './shared-video.svg';
+export { default as IconSignout } from './signout.svg';
 export { default as IconSwitchCamera } from './switch-camera.svg';
 export { default as IconTileView } from './tiles-many.svg';
 export { default as IconToggleRecording } from './camera-take-picture.svg';

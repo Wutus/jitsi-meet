@@ -81,6 +81,8 @@ import OverflowMenuProfileItem from './OverflowMenuProfileItem';
 import ToolbarButton from './ToolbarButton';
 import VideoSettingsButton from './VideoSettingsButton';
 
+import { DetectTextButton, DetectedTextDialog, isWithLargeVideo } from '../../../text-detection';
+
 /**
  * The type of the React {@code Component} props of {@link Toolbox}.
  */
@@ -246,6 +248,7 @@ class Toolbox extends Component<Props, State> {
         this._onToolbarToggleSharedVideo = this._onToolbarToggleSharedVideo.bind(this);
         this._onToolbarOpenLocalRecordingInfoDialog = this._onToolbarOpenLocalRecordingInfoDialog.bind(this);
         this._onShortcutToggleTileView = this._onShortcutToggleTileView.bind(this);
+        this._openDetectedTextDialog = this._openDetectedTextDialog.bind(this);
 
         this.state = {
             windowWidth: window.innerWidth
@@ -358,6 +361,10 @@ class Toolbox extends Component<Props, State> {
                 { this._renderToolboxContent() }
             </div>
         );
+    }
+
+    _openDetectedTextDialog() {
+        this.props.dispatch(openDialog(DetectedTextDialog));
     }
 
     /**
@@ -1266,6 +1273,7 @@ class Toolbox extends Component<Props, State> {
                     { this._renderVideoButton() }
                 </div>
                 <div className = 'button-group-right'>
+                    { isWithLargeVideo() && <DetectTextButton afterClick={this._openDetectedTextDialog} /> }
                     { buttonsRight.indexOf('localrecording') !== -1
                         && <LocalRecordingButton
                             onClick = {

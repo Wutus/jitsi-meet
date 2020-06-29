@@ -36,13 +36,16 @@ const config = {
     devServer: {
         https: true,
         inline: true,
+        host: "0.0.0.0",
+        port: 443,
+        disableHostCheck: true,
         proxy: {
             '/': {
                 bypass: devServerProxyBypass,
                 secure: false,
                 target: devServerProxyTarget,
                 headers: {
-                    'Host': new URL(devServerProxyTarget).host
+                    //'Host': new URL(devServerProxyTarget).host
                 }
             }
         }
