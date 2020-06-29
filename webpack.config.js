@@ -36,21 +36,19 @@ const config = {
     devServer: {
         https: true,
         inline: true,
+        host: "0.0.0.0",
+        port: 443,
+        disableHostCheck: true,
         proxy: {
             '/': {
                 bypass: devServerProxyBypass,
                 secure: false,
                 target: devServerProxyTarget,
                 headers: {
-                    'Host': new URL(devServerProxyTarget).host
+                    //'Host': new URL(devServerProxyTarget).host
                 }
             }
-        }/*,
-        headers: {
-            'Access-Control-Allow-Origin': '*',
-            "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
-            "Access-Control-Allow-Headers": "X-Requested-With, Content-Type, application/x-www-form-urlencoded, Authorization"
-        }*/
+        }
     },
     devtool: 'source-map',
     mode: minimize ? 'production' : 'development',
@@ -198,37 +196,37 @@ module.exports = [
         entry: {
             'device_selection_popup_bundle': './react/features/settings/popup.js'
         },
-        performance: getPerformanceHints(750 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
             'alwaysontop': './react/features/always-on-top/index.js'
         },
-        performance: getPerformanceHints(400 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
             'dial_in_info_bundle': './react/features/invite/components/dial-in-info-page'
         },
-        performance: getPerformanceHints(500 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
             'do_external_connect': './connection_optimization/do_external_connect.js'
         },
-        performance: getPerformanceHints(5 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
             'flacEncodeWorker': './react/features/local-recording/recording/flac/flacEncodeWorker.js'
         },
-        performance: getPerformanceHints(5 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
     Object.assign({}, config, {
         entry: {
             'analytics-ga': './react/features/analytics/handlers/GoogleAnalyticsHandler.js'
         },
-        performance: getPerformanceHints(5 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
 
     // Because both video-blur-effect and rnnoise-processor modules are loaded
@@ -248,7 +246,7 @@ module.exports = [
             filename: '[name].min.js',
             sourceMapFilename: '[name].min.map'
         }),
-        performance: getPerformanceHints(1 * 1024 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
 
     Object.assign({}, config, {
@@ -261,7 +259,7 @@ module.exports = [
             filename: '[name].min.js',
             sourceMapFilename: '[name].min.map'
         }),
-        performance: getPerformanceHints(30 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     }),
 
     Object.assign({}, config, {
@@ -272,7 +270,7 @@ module.exports = [
             library: 'JitsiMeetExternalAPI',
             libraryTarget: 'umd'
         }),
-        performance: getPerformanceHints(30 * 1024)
+        performance: getPerformanceHints(4 * 1024 * 1024)
     })
 ];
 

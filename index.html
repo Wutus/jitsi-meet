@@ -16,25 +16,7 @@
             var roomName = encodeURIComponent(window.location.pathname);
             window.location.href = "static/recommendedBrowsers.html" + "?room=" + roomName;
         }
-        $('document').ready(function() {
-            console.log('Trying to read user credentials...')
-            let userId = localStorage.get('userId');
-            if (!userId) {
-                console.log('User not logged in - redirecting to Cognito login page')
-                /*window.location = '/login';*/
-                let redirect_url = "https://localhost:8080/oauth2/callback"
-                let base_cognito_url = 'https://jitsierystrea.auth.us-east-1.amazoncognito.com/'
-                let cognito_oauth_path = 'oauth2/authorize'
-                let client_id = '1d0j9qrtoimtll6ckitqqspp53'
-                let response_type = 'code'
-                let scope = 'aws.cognito.signin.user.admin+email+https://erystrea.pl/jitsiuser+openid+phone+profile'
-                let login_url = 'https://${base_cognito_url}/${cognito_oauth_path}?client_id=${client_id}&response_type=${response_type}&scope=${scope}&redirect_uri=\'${redirect_url}\''
-                console.log('login url')
-                console.log(login_url)
-                window.location = login_url;
-            }
-            console.log(userId)
-        });
+
         window.indexLoadedTime = window.performance.now();
         console.log("(TIME) index.html loaded:\t", indexLoadedTime);
         // XXX the code below listeners for errors and displays an error message
