@@ -20,6 +20,6 @@ class CognitoConfigClass {
         this.token_url = `${base_cognito_url}/${cognito_token_path}`;
     }
 }
-export const CognitoConfig = new CognitoConfigClass("https://erystrea.pl:4443", "oauth2/signout", "oauth2/callback", 
+export const CognitoConfig = new CognitoConfigClass("https://erystrea.pl", "oauth2/signout", "oauth2/callback", 
     'https://jitsierystrea.auth.us-east-1.amazoncognito.com', 'oauth2/authorize', 'oauth2/token', '1le84rocd5atvccsqiohrpidgu',
     'code', 'aws.cognito.signin.user.admin+email+https://erystrea.pl/jitsiuser+openid+phone+profile', 'authorization_code');

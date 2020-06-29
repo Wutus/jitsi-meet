@@ -3,13 +3,14 @@
 const CircularDependencyPlugin = require('circular-dependency-plugin');
 const process = require('process');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const URL = require('url').URL;
 
 /**
  * The URL of the Jitsi Meet deployment to be proxy to in the context of
  * development with webpack-dev-server.
  */
 const devServerProxyTarget
-    = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://alpha.jitsi.net';
+    = process.env.WEBPACK_DEV_SERVER_PROXY_TARGET || 'https://admin.erystrea.pl';
 
 const analyzeBundle = process.argv.indexOf('--analyze-bundle') !== -1;
 const detectCircularDeps = process.argv.indexOf('--detect-circular-deps') !== -1;
@@ -37,7 +38,7 @@ const config = {
         https: true,
         inline: true,
         host: "0.0.0.0",
-        port: 4443,
+        port: 443,
         disableHostCheck: true,
         proxy: {
             '/': {
@@ -45,7 +46,7 @@ const config = {
                 secure: false,
                 target: devServerProxyTarget,
                 headers: {
-                    //'Host': new URL(devServerProxyTarget).host
+                    'Host': new URL(devServerProxyTarget).host
                 }
             }
         }
