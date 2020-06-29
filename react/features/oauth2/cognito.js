@@ -41,20 +41,20 @@ export function cognitoCodeLoginCallback(uri: ?string) {
        localStorage.setItem("access_token", response.access_token);
        localStorage.setItem("refresh_token", response.refresh_token);
        localStorage.setItem('userId', decoded_token["cognito:username"]);
-       window.location = "https://erystrea.pl";
+       window.location.href  = "/";
     });
 
     request.fail(function(response) {
         console.log("request failed");
         console.log(response);
-        window.location = "https://erystrea.pl";
+        window.location.href  = "/";
     });
 }
 
 export function cognitoSignOutCallback(uri: ?string) {
     console.log("Signing out...");
     console.log(uri);
-    //window.location = "https://localhost:8080";
+    window.location.href  = "/";
 }
 
 export function cognitoCheckLogin() {
@@ -64,7 +64,7 @@ export function cognitoCheckLogin() {
         console.log('User not logged in - redirecting to Cognito login page');
         console.log('login url');
         console.log(CognitoConfig.login_url);
-        window.location = CognitoConfig.login_url;
+        window.location.href  = CognitoConfig.login_url;
     }
     console.log(userId);
 }
@@ -74,4 +74,5 @@ export function cognitoSignOut() {
     localStorage.removeItem("access_token");
     localStorage.removeItem("refresh_token");
     localStorage.removeItem('userId');
+    window.location.href = '/';
 }

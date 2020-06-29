@@ -68,7 +68,7 @@
     "moment-duration-format": "2.2.2",
     "nvm": "0.0.4",
     "pixelmatch": "5.1.0",
-    "react": "16.9",
+    "react": "^16.9.0",
     "react-dom": "16.9",
     "react-emoji-render": "1.2.4",
     "react-i18next": "10.11.4",
