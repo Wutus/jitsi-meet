@@ -62,7 +62,10 @@ export function blobToStr(blob) {
 function logIn() {
     AWS.config.region = 'us-east-1';
     AWS.config.credentials = new AWS.CognitoIdentityCredentials({
-        IdentityPoolId: 'us-east-1:52e054ab-8f34-48ad-9383-78f310f80ace',
+        IdentityPoolId: 'us-east-1:2bbfc1e1-20ab-47fe-927b-2794b95f18b8',
+        // Logins: {
+        //     'cognito-idp.us-east-1.amazonaws.com/us-east-1_jC6jjR0kz': localStorage.getItem('access_token')
+        // }
     });
 }
 
@@ -105,8 +108,9 @@ function getDetections(base64) {
             if (err) {
                 reject(err);
             }
-            else
+            else {
                 resolve(data);
+            }
         });
     });
     

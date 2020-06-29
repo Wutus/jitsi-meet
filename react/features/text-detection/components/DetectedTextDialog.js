@@ -35,7 +35,7 @@ function DetectedTextDialog(props: Props) {
     }
 
     React.useEffect(() => {
-        extractText();
+        extractText().catch(err => console.log(err));
     }, []);
 
     return (
