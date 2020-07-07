@@ -31,7 +31,7 @@ import {
     getName
 } from './functions';
 import logger from './logger';
-import { cognitoCodeLoginCallback, cognitoSignOutCallback, cognitoCheckLogin } from '../oauth2';
+import { redirectAuth } from '../oauth2';
 
 declare var APP: Object;
 declare var interfaceConfig: Object;
@@ -81,17 +81,8 @@ export function appNavigate(uri: ?string) {
         console.log("location.pathname");
         console.log(location.pathname);
 
-        if(location.pathname === "/oauth2/callback") {
-            cognitoCodeLoginCallback(uri);
-            return;
-        }
-
-        if(location.pathname === "/oauth2/signout") {
-            cognitoSignOutCallback(uri);
-            return;
-        }
-
-        cognitoCheckLogin()
+        //Check if return from authorization service
+        redirectAuth(uri);
 
         // Disconnect from any current conference.
         // FIXME: unify with web.

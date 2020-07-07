@@ -6,38 +6,38 @@ var config = {
 
     hosts: {
         // XMPP domain.
-        domain: 'erystrea.pl',
+        domain: 'admin.erystrea.pl',
 
         // When using authentication, domain for guest users.
         // anonymousdomain: 'guest.example.com',
 
         // Domain for authenticated users. Defaults to <domain>.
-        // authdomain: 'erystrea.pl',
+        // authdomain: 'admin.erystrea.pl',
 
         // Jirecon recording component domain.
-        // jirecon: 'jirecon.erystrea.pl',
+        // jirecon: 'jirecon.admin.erystrea.pl',
 
         // Call control component (Jigasi).
-        // call_control: 'callcontrol.erystrea.pl',
+        // call_control: 'callcontrol.admin.erystrea.pl',
 
         // Focus component domain. Defaults to focus.<domain>.
-        // focus: 'focus.erystrea.pl',
+        // focus: 'focus.admin.erystrea.pl',
 
         // XMPP MUC domain. FIXME: use XEP-0030 to discover it.
-        muc: 'conference.erystrea.pl'
+        muc: 'conference.admin.erystrea.pl'
     },
 
     // BOSH URL. FIXME: use XEP-0156 to discover it.
-    bosh: '//erystrea.pl/http-bind',
+    bosh: '//admin.erystrea.pl/http-bind',
 
     // Websocket URL
-    // websocket: 'wss://erystrea.pl/xmpp-websocket',
+    // websocket: 'wss://admin.erystrea.pl/xmpp-websocket',
 
     // The name of client node advertised in XEP-0115 'c' stanza
     clientNode: 'http://jitsi.org/jitsimeet',
 
     // The real JID of focus participant - can be overridden here
-    // focusUserJid: 'focus@auth.erystrea.pl',
+    // focusUserJid: 'focus@auth.admin.erystrea.pl',
 
 
     // Testing / experimental features.
@@ -172,9 +172,9 @@ var config = {
     //     appKey: '<APP_KEY>' // Specify your app key here.
     //     // A URL to redirect the user to, after authenticating
     //     // by default uses:
-    //     // 'https://erystrea.pl/static/oauth.html'
+    //     // 'https://admin.erystrea.pl/static/oauth.html'
     //     redirectURI:
-    //          'https://erystrea.pl/subfolder/static/oauth.html'
+    //          'https://admin.erystrea.pl/subfolder/static/oauth.html'
     // },
     // When integrations like dropbox are enabled only that will be shown,
     // by enabling fileRecordingsServiceEnabled, we show both the integrations
@@ -361,7 +361,7 @@ var config = {
         // The STUN servers that will be used in the peer to peer connections
         stunServers: [
 
-            // { urls: 'stun:erystrea.pl:4446' },
+            // { urls: 'stun:admin.erystrea.pl:4446' },
             { urls: 'stun:meet-jit-si-turnrelay.jitsi.net:443' }
         ]
 
@@ -542,9 +542,8 @@ var config = {
      peopleSearchQueryTypes
      peopleSearchUrl
      requireDisplayName
-     tokenAuthUrl
      */
-
+    tokenAuthUrl: 'https://jitsierystrea.auth.us-east-1.amazoncognito.com',
     // List of undocumented settings used in lib-jitsi-meet
     /**
      _peerConnStatusOutOfLastNTimeout

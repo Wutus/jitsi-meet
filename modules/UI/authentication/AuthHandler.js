@@ -29,14 +29,17 @@ const getTokenAuthUrl
  * @param {string} [lockPassword] password to use if the conference is locked
  */
 function doExternalAuth(room, lockPassword) {
+    logger.info(`Start external auth process for ${room.getName()}`)
+    logger.info("externalAuthWindow", externalAuthWindow)
     if (externalAuthWindow) {
         externalAuthWindow.focus();
 
         return;
     }
+    logger.info("room.isJoined()", room.isJoined())
     if (room.isJoined()) {
         let getUrl;
-
+        logger.info("isTokenAuthEnabled", isTokenAuthEnabled)
         if (isTokenAuthEnabled) {
             getUrl = Promise.resolve(getTokenAuthUrl(room.getName(), true));
             initJWTTokenListener(room);
@@ -70,7 +73,10 @@ function doExternalAuth(room, lockPassword) {
 function redirectToTokenAuthService(roomName) {
     // FIXME: This method will not preserve the other URL params that were
     // originally passed.
-    UIUtil.redirect(getTokenAuthUrl(roomName, false));
+    let pathUrl = `${config.tokenAuthUrl}&state=${roomName}`
+    let getStateTokenAuthUrl = 
+        JitsiMeetJS.util.AuthUtil.getTokenAuthUrl.bind(null, pathUrl);
+    UIUtil.redirect(getStateTokenAuthUrl(roomName, true));
 }
 
 /**
@@ -82,7 +88,9 @@ function initJWTTokenListener(room) {
     /**
      *
      */
+    logger.info("initing JWT Token Listener")
     function listener({ data, source }) {
+        logger.info("data", data)
         if (externalAuthWindow !== source) {
             logger.warn('Ignored message not coming '
                 + 'from external authnetication window');
@@ -205,6 +213,10 @@ function doXmppAuth(room, lockPassword) {
  * @param {string} [lockPassword] password to use if the conference is locked
  */
 function authenticate(room, lockPassword) {
+    logger.info(`Start authentication process for ${room}`)
+    logger.info("isTokenAuthEnabled", isTokenAuthEnabled)
+    logger.info("room.isExternalAuthEnabled()", room.isExternalAuthEnabled())
+    logger.info("config.tokenAuthUrl", config.tokenAuthUrl)
     if (isTokenAuthEnabled || room.isExternalAuthEnabled()) {
         doExternalAuth(room, lockPassword);
     } else {

@@ -10,7 +10,7 @@ import { connect } from '../../base/redux';
 import { CalendarList } from '../../calendar-sync';
 import { RecentList } from '../../recent-list';
 import { SettingsButton, SETTINGS_TABS } from '../../settings';
-import { SignOutButton } from '../../oauth2';
+/*import { SignOutButton } from '../../oauth2';*/
 
 import { AbstractWelcomePage, _mapStateToProps } from './AbstractWelcomePage';
 import Tabs from './Tabs';
@@ -174,7 +174,6 @@ class WelcomePage extends AbstractWelcomePage {
                 id = 'welcome_page'>
                 <div className = 'header'>
                     <div className = 'welcome-page-settings'>
-                        <SignOutButton/>
                         <SettingsButton
                             defaultTab = { SETTINGS_TABS.CALENDAR } />
                         { showAdditionalToolbarContent
